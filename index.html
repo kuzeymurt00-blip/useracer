@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AbsoluteChat Status</title>
+    <style>
+        body { background: #000; color: #ff0000; font-family: monospace; text-align: center; padding-top: 100px; }
+        .status-box { border: 2px solid #ff0000; display: inline-block; padding: 20px; border-radius: 10px; }
+        h1 { font-size: 30px; }
+        .loading { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="status-box">
+        <h1>🔴 ABSOLUTECHAT</h1>
+        <p id="status-text" class="loading">Sistem Durumu Kontrol Ediliyor...</p>
+    </div>
+
+    <script>
+        // BURAYA ACER'I AÇTIĞINDA GELEN CLOUDFLARE LINKINI YAZACAKSIN
+        const CANLI_LINK = "https://senin-cloudflare-linkin.trycloudflare.com";
+
+        // Sunucunun açık olup olmadığını kontrol eden minik kod
+        fetch(CANLI_LINK, { mode: 'no-cors' })
+            .then(() => {
+                document.getElementById('status-text').innerHTML = "🟢 SİSTEM AKTİF! Yönlendiriliyorsunuz...";
+                setTimeout(() => { window.location.href = CANLI_LINK; }, 1500);
+            })
+            .catch(() => {
+                document.getElementById('status-text').innerHTML = "⚠️ SUNUCULAR ŞU AN DEVRE DIŞI VEYA BAKIMDA";
+                document.getElementById('status-text').style.color = "yellow";
+            });
+    </script>
+</body>
+</html>
